@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.TimeZone;
 
 import javax.validation.Valid;
@@ -21,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.hbsis.model.Cidade;
@@ -41,9 +38,7 @@ import br.com.hbsis.repository.CidadeRepository;
 @RequestMapping("/api")
 public class CidadeController {
 	
-
 	private static final String GET_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?";
-
 
 	@Autowired
 	CidadeRepository cidadeRepository;
@@ -110,55 +105,7 @@ public class CidadeController {
 			
 			return temperatura;
 	}
-	
-	@GetMapping(path = {"/cidades/{id}"})
-	public ResponseEntity<Cidade> findById(@PathVariable long id) throws URISyntaxException, UnsupportedEncodingException{
-
-		ResponseEntity<Cidade> cidade = cidadeRepository.findById(id)
-		          .map(record -> ResponseEntity.ok().body(record))
-		          .orElse(ResponseEntity.notFound().build());
 		
-		if(Objects.nonNull(cidade))
-		{
-			try {
-			String id1 = String.format("id=%s", cidade.getBody().getId_global().toString());
-			String units = String.format("&units=%s", URLEncoder.encode("metric", "UTF-8"));
-			String appId = String.format("&appId=%s", URLEncoder.encode("eb8b1a9405e659b2ffc78f0a520b1a46", "UTF-8"));
-			
-
-			URI url = new URI(GET_URL + id1 + units + appId);
-		    RestTemplate restTemplate = new RestTemplate();
-		     
-		    HttpHeaders headers = new HttpHeaders();
-		    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		    HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		     
-		    ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-	    	
-		    
-		    
-		    if (result.getStatusCode() != HttpStatus.OK) {
-				throw new RestClientException("A chamada da api de envio de sms falhou ");
-			}
-
-		    
-			}
-			catch(Exception e){
-			}
-			
-		}
-		
-		
-		return cidadeRepository.findById(id)
-	          .map(record -> ResponseEntity.ok().body(record))
-	          .orElse(ResponseEntity.notFound().build());
-	}
-
-	@RequestMapping("/home")
-	public String home() {
-		return "index";
-	}
-	
 	@PostMapping("/cidades")
 	public Cidade save(@Valid @RequestBody Cidade cidade) {
 	    return cidadeRepository.save(cidade);

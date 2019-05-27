@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Cidade} from './models/Cidade'
 
 import { Router } from '@angular/router';
 
@@ -23,7 +24,7 @@ export class CidadeService {
 
   saveCidade(cidade: Object)
   {
-    return this.http.post('http://localhost:8080/api/cidades', cidade );
+    return this.http.post<Cidade>('http://localhost:8080/api/cidades', cidade );
   }
 
 

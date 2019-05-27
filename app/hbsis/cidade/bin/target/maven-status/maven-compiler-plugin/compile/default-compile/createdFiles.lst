@@ -1,0 +1,3 @@
+br/com/hbsis/model/Cidade.class
+br/com/hbsis/repository/CidadeRepository.class
+br/com/hbsis/controller/CidadeController.class

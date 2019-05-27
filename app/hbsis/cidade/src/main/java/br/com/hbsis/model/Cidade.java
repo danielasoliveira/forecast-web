@@ -25,7 +25,7 @@ public class Cidade implements Serializable{
 	private Long id;
 	
 	@NotNull
-	private Long id_global;
+	private Long idGlobal;
 	
 	@NotNull
 	private String nome;
@@ -34,19 +34,19 @@ public class Cidade implements Serializable{
 	private String pais;
 	
 	@NotNull
-	private String sgl_pais;
+	private String sglPais;
 	
-	public Long getId_global() {
-		return id_global;
+	public Long getIdGlobal() {
+		return idGlobal;
 	}
-	public void setId_global(Long id_global) {
-		this.id_global = id_global;
+	public void setIdGlobal(Long idGlobal) {
+		this.idGlobal = idGlobal;
 	}
-	public String getSgl_pais() {
-		return sgl_pais;
+	public String getSglPais() {
+		return sglPais;
 	}
-	public void setSgl_pais(String sgl_pais) {
-		this.sgl_pais = sgl_pais;
+	public void setSglPais(String sglPais) {
+		this.sglPais = sglPais;
 	}
 	private String latitude;
 	private String longitude;
@@ -80,12 +80,12 @@ public class Cidade implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((id_global == null) ? 0 : id_global.hashCode());
+		result = prime * result + ((idGlobal == null) ? 0 : idGlobal.hashCode());
 		result = prime * result + ((latitude == null) ? 0 : latitude.hashCode());
 		result = prime * result + ((longitude == null) ? 0 : longitude.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((pais == null) ? 0 : pais.hashCode());
-		result = prime * result + ((sgl_pais == null) ? 0 : sgl_pais.hashCode());
+		result = prime * result + ((sglPais == null) ? 0 : sglPais.hashCode());
 		return result;
 	}
 	@Override
@@ -103,10 +103,10 @@ public class Cidade implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (id_global == null) {
-			if (other.id_global != null)
+		if (idGlobal == null) {
+			if (other.idGlobal != null)
 				return false;
-		} else if (!id_global.equals(other.id_global))
+		} else if (!idGlobal.equals(other.idGlobal))
 			return false;
 		if (latitude == null) {
 			if (other.latitude != null)
@@ -128,10 +128,10 @@ public class Cidade implements Serializable{
 				return false;
 		} else if (!pais.equals(other.pais))
 			return false;
-		if (sgl_pais == null) {
-			if (other.sgl_pais != null)
+		if (sglPais == null) {
+			if (other.sglPais != null)
 				return false;
-		} else if (!sgl_pais.equals(other.sgl_pais))
+		} else if (!sglPais.equals(other.sglPais))
 			return false;
 		return true;
 	}
@@ -146,8 +146,8 @@ public class Cidade implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Cidade [id=" + id + ", id_global=" + id_global + ", nome=" + nome + ", pais=" + pais + ", sgl_pais="
-				+ sgl_pais + ", latitude=" + latitude + ", longitude=" + longitude + "]";
+		return "Cidade [id=" + id + ", idGlobal=" + idGlobal + ", nome=" + nome + ", pais=" + pais + ", sglPais="
+				+ sglPais + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 
 }

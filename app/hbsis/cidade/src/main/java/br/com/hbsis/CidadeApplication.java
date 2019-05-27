@@ -9,8 +9,4 @@ public class CidadeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CidadeApplication.class, args);
 	}
-	
-
- 
-
 }
